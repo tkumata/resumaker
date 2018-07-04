@@ -55,6 +55,9 @@ class HomeController extends Controller
         $user = Auth::user();
 
         if ($user) {
+            /**
+             * Users
+             */
             $user->name_kana = $data->name_kana;
             $user->name = $data->name;
             $user->email = $data->email;
@@ -66,18 +69,36 @@ class HomeController extends Controller
             $user->tel1 = $data->tel1;
             $user->tel2 = $data->tel2;
             $user->fax = $data->fax;
+            $user->save();
 
+            /**
+             * Resumes
+             *
+             * @var $data->{'resume_id_'.$i}
+             * @var $data->{'resume_org_'.$i}
+             */
             for ($i = 1; $i < 12; $i++) {
+                if ($data->{'resume_year_'.$i} && $data->{'resume_month_'.$i}) {
+                    $dateTimeString = $data->{'resume_year_'.$i} . '-' .
+                        sprintf('%02d', $data->{'resume_month_'.$i}) . '-' .
+                        '01 00:00:00';
+                    $resumeUnixTime = strtotime($dateTimeString);
+                } else {
+                    $resumeUnixTime = null;
+                }
+
                 if (empty($data->{'resume_id_'.$i})) {
                     if ($data->{'resume_org_'.$i}) {
                         $resumes = new Resumes;
                         $resumes->resumes_users_id = $user->id;
+                        $resumes->resumes_date = $resumeUnixTime;
                         $resumes->resumes_organization_name = $data->{'resume_org_'.$i};
                         $resumes->save();
                     }
                 } else {
                     if ($data->{'resume_org_'.$i}) {
                         Resumes::where('id', $data->{'resume_id_'.$i})->update([
+                            'resumes_date' => $resumeUnixTime,
                             'resumes_organization_name' => $data->{'resume_org_'.$i}
                         ]);
                     } else {
@@ -86,7 +107,9 @@ class HomeController extends Controller
                 }
             }
 
-            $user->save();
+            /**
+             * Licenses
+             */
         }
 
         return view('home');
@@ -117,6 +140,7 @@ class HomeController extends Controller
 
         if ($user) {
             $resumes = Resumes::where('resumes_users_id', $user->id)->get();
+
             return view('resume', compact('user', 'resumes'));
         }
     }
