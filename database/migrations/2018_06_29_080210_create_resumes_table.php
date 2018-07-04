@@ -15,9 +15,9 @@ class CreateResumesTable extends Migration
     {
         Schema::create('resumes', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('resumes_users_id');
-            $table->dateTime('resumes_date');
-            $table->string('resumes_organization_name');
+            $table->bigInteger('resumes_users_id')->nullable();
+            $table->dateTime('resumes_date')->nullable();
+            $table->string('resumes_organization_name')->nullable();
             $table->timestamps();
         });
     }

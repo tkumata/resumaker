@@ -40,6 +40,7 @@ class HomeController extends Controller
 
         if ($user) {
             $resumes = Resumes::where('resumes_users_id', $user->id)->get();
+
             return view('auth.edit', compact('user', 'resumes'));
         }
     }
@@ -65,6 +66,26 @@ class HomeController extends Controller
             $user->tel1 = $data->tel1;
             $user->tel2 = $data->tel2;
             $user->fax = $data->fax;
+
+            for ($i = 1; $i < 12; $i++) {
+                if (empty($data->{'resume_id_'.$i})) {
+                    if ($data->{'resume_org_'.$i}) {
+                        $resumes = new Resumes;
+                        $resumes->resumes_users_id = $user->id;
+                        $resumes->resumes_organization_name = $data->{'resume_org_'.$i};
+                        $resumes->save();
+                    }
+                } else {
+                    if ($data->{'resume_org_'.$i}) {
+                        Resumes::where('id', $data->{'resume_id_'.$i})->update([
+                            'resumes_organization_name' => $data->{'resume_org_'.$i}
+                        ]);
+                    } else {
+                        Resumes::where('id', $data->{'resume_id_'.$i})->delete();
+                    }
+                }
+            }
+
             $user->save();
         }
 

@@ -11,6 +11,7 @@
                     <form method="POST" action="{{ route('updateUser') }}">
                         @csrf
 
+                        {{-- 個人情報部分 --}}
                         <div class="form-group row">
                             <label for="name_kana" class="col-md-4 col-form-label text-md-right">{{ __('Name Kana') }}</label>
 
@@ -124,7 +125,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="tel1" class="col-md-4 col-form-label text-md-right">{{ __('Tel1') }}</label>
+                            <label for="tel1" class="col-md-4 col-form-label text-md-right">{{ __('Tel') }}</label>
 
                             <div class="col-md-6">
                                 <input id="tel1" type="tel1" class="form-control{{ $errors->has('tel1') ? ' is-invalid' : '' }}" name="tel1" value="{{ old('tel1', $user->tel1) }}">
@@ -138,7 +139,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="tel2" class="col-md-4 col-form-label text-md-right">{{ __('Tel2') }}</label>
+                            <label for="tel2" class="col-md-4 col-form-label text-md-right">{{ __('Mobile') }}</label>
 
                             <div class="col-md-6">
                                 <input id="tel2" type="tel2" class="form-control{{ $errors->has('tel2') ? ' is-invalid' : '' }}" name="tel2" value="{{ old('tel2', $user->tel2) }}">
@@ -165,29 +166,45 @@
                             </div>
                         </div>
 
+                        {{-- 履歴部分 --}}
+                        <?php $i = 1; ?>
                         @forelse ($resumes as $resume)
+                        <?php
+                        $year = date('Y', strtotime($resume->resumes_date));
+                        $month = date('m', strtotime($resume->resumes_date));
+                        ?>
                         <div class="form-group row">
-                            <label for="resume_1" class="col-md-4 col-form-label text-md-right">{{ __('Resume') }}</label>
+                            <label for="resume_{{ $i }}" class="col-md-4 col-form-label text-md-right">{{ __('Resume ').$i }}</label>
 
                             <div class="input-group col-md-6">
-                                <input id="resume_year_1" type="resume_year_1" class="form-control{{ $errors->has('resume_year_1') ? ' is-invalid' : '' }}" name="resume_year_1" value="{{ old('resume_year_1', $resume->resumes_date) }}">
-                                <input id="resume_month_1" type="resume_month_1" class="form-control{{ $errors->has('resume_month_1') ? ' is-invalid' : '' }}" name="resume_month_1" value="{{ old('resume_month_1', $resume->resumes_date) }}">
-                                <input id="resume_org_1" type="resume_org_1" class="form-control{{ $errors->has('resume_org_1') ? ' is-invalid' : '' }}" name="resume_org_1" value="{{ old('resume_org_1', $resume->resumes_organization_name) }}">
+                                <input type="hidden" name="resume_id_{{ $i }}" value="{{ $resume->id }}">
+                                <input id="resume_year_{{ $i }}" type="resume_year_{{ $i }}" class="form-control{{ $errors->has('resume_year_{$i}') ? ' is-invalid' : '' }}" name="resume_year_{{ $i }}" value="{{ old('resume_year_{$i}', $year) }}">
+                                <input id="resume_month_{{ $i }}" type="resume_month_{{ $i }}" class="form-control{{ $errors->has('resume_month_{$i}') ? ' is-invalid' : '' }}" name="resume_month_{{ $i }}" value="{{ old('resume_month_{$i}', $month) }}">
+                                <input id="resume_org_{{ $i }}" type="resume_org_{{ $i }}" class="form-control{{ $errors->has('resume_org_{$i}') ? ' is-invalid' : '' }}" name="resume_org_{{ $i }}" value="{{ old('resume_org_{$i}', $resume->resumes_organization_name) }}">
                             </div>
                         </div>
-                        <?php $count = $loop->count; ?>
+                        <?php $i++; ?>
                         @empty
+                        <?php $i = 0; ?>
                         @endforelse
-                        @for ($n = 0; $n < 11 - $count; $n++)
+                        <?php
+                        if (empty($count)) {
+                            $count = 0;
+                        }
+                        ?>
+                        @for ($n = $i+1; $n < 12; $n++)
                         <div class="form-group row">
-                            <label for="resume_1" class="col-md-4 col-form-label text-md-right">{{ __('Resume') }}</label>
+                            <label for="resume_{{ $n }}" class="col-md-4 col-form-label text-md-right">{{ __('Resume ').$n }}</label>
 
                             <div class="input-group col-md-6">
-                                <input id="resume_year_1" type="resume_year_1" class="form-control{{ $errors->has('resume_year_1') ? ' is-invalid' : '' }}" name="resume_year_1" value="{{ old('resume_year_1') }}">
+                                <input id="resume_year_{{ $n }}" type="resume_year_{{ $n }}" class="form-control{{ $errors->has('resume_year_{$n}') ? ' is-invalid' : '' }}" name="resume_year_{{ $n }}" value="{{ old('resume_year_{$n}') }}">
+                                <input id="resume_month_{{ $n }}" type="resume_month_{{ $n }}" class="form-control{{ $errors->has('resume_month_{$n}') ? ' is-invalid' : '' }}" name="resume_month_{{ $n }}" value="{{ old('resume_month_{$n}') }}">
+                                <input id="resume_org_{{ $n }}" type="resume_org_{{ $n }}" class="form-control{{ $errors->has('resume_org_{$n}') ? ' is-invalid' : '' }}" name="resume_org_{{ $n }}" value="{{ old('resume_org_{$n}') }}">
                             </div>
                         </div>
                         @endfor
 
+                        {{-- submit button --}}
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

@@ -15,10 +15,10 @@ class CreateCareersTable extends Migration
     {
         Schema::create('careers', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('careers_users_id');
-            $table->dateTime('careers_date');
-            $table->string('careers_organization_name');
-            $table->text('careers_detail');
+            $table->bigInteger('careers_users_id')->nullable();
+            $table->dateTime('careers_date')->nullable();
+            $table->string('careers_organization_name')->nullable();
+            $table->text('careers_detail')->nullable();
             $table->timestamps();
         });
     }
