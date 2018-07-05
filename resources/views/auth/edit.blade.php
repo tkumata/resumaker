@@ -167,7 +167,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
+                            <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Image (aspect 3:4)') }}</label>
 
                             <div class="col-md-6">
                                 <div id="trim-border">
