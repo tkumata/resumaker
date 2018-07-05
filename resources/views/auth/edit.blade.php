@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Edit Basic Info') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('updateUser') }}">
+                    <form method="POST" action="{{ route('updateUser') }}" enctype="multipart/form-data">
                         @csrf
 
                         {{-- 個人情報部分 --}}
@@ -161,6 +161,25 @@
                                 @if ($errors->has('fax'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('fax') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
+
+                            <div class="col-md-6">
+                                @if ($user->img_path)
+                                <img id="img" src="{{ url('/') }}/profilepics/{{ $user->img_path }}" />
+                                @else
+                                <img id="img" src="{{ url('/') }}/person_default.png" />
+                                @endif
+                                <input id="image" class="form-control{{ $errors->has('image') ? ' is-invalid' : '' }}" name="image" type="file">
+
+                                @if ($errors->has('image'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('image') }}</strong>
                                     </span>
                                 @endif
                             </div>

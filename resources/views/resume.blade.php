@@ -105,7 +105,11 @@
     </svg>
     <div id="page-1">
         <h1>履 歴 書</h1>
-        <img class="photo" src="kao.png" alt="証明写真" />
+        @if ($user->img_path)
+        <img class="photo" src="{{ url('/') }}/profilepics/{{ $user->img_path }}" alt="写真" />
+        @else
+        <img class="photo" src="{{ url('/') }}/person_default.png" alt="写真" />
+        @endif
         <div class="name">
             <h2>氏名</h2>
             <span>{{ $user->name }}</span>
@@ -131,7 +135,7 @@
             <span>{{ $user->tel1 }}</span>
         </div>
         <div class="e-mail">
-            <h2>Eメール</h2>
+            <h2>E メール</h2>
             <span>{{ $user->email }}</span>
         </div>
         <div class="address">
@@ -169,6 +173,7 @@
                 <tr><td>{{ $year }}</td><td>{{ $month }}</td><td>{{ $resumes_company->resumes_organization_name }}</td></tr>
                 @endforeach
                 @endif
+
                 <tr><td></td><td></td><td><div class="table-lastline">以上</div></td></tr>
             </table>
         </div>

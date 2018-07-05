@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Users;
 use App\Resumes;
 use App\License;
 use Auth;
+use Intervention\Image\Facades\Image as Image;
 
 class HomeController extends Controller
 {
@@ -71,6 +73,21 @@ class HomeController extends Controller
             $user->tel1 = $data->tel1;
             $user->tel2 = $data->tel2;
             $user->fax = $data->fax;
+            // Image
+            if (Input::file('image')) {
+                $image = Input::file('image');
+                $filename  = time() . '.' . $image->getClientOriginalExtension();
+                $path = public_path('profilepics/' . $filename);
+                Image::make($image->getRealPath())->resize(
+                    150,
+                    null,
+                    function ($constraint) {
+                        $constraint->aspectRatio();
+                    }
+                )->save($path);
+                $user->img_path = $filename;
+            }
+            // Save
             $user->save();
 
             /**
