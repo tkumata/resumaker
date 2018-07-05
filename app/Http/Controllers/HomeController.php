@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Users;
 use App\Resumes;
+use App\License;
 use Auth;
 
 class HomeController extends Controller
@@ -40,8 +41,9 @@ class HomeController extends Controller
 
         if ($user) {
             $resumes = Resumes::where('resumes_users_id', $user->id)->get();
+            $licenses = License::where('license_users_id', $user->id)->get();
 
-            return view('auth.edit', compact('user', 'resumes'));
+            return view('auth.edit', compact('user', 'resumes', 'licenses'));
         }
     }
 
@@ -109,6 +111,38 @@ class HomeController extends Controller
             /**
              * Licenses
              */
+            for ($i = 1; $i < 7; $i++) {
+                if ($data->{'license_year_'.$i} && $data->{'license_month_'.$i}) {
+                    $dateTimeString = $data->{'license_year_'.$i} . '-' .
+                        sprintf('%02d', $data->{'license_month_'.$i}) . '-' .
+                        '01 00:00:00';
+                } else {
+                    $dateTimeString = null;
+                }
+
+                if (empty($data->{'license_id_'.$i})) {
+                    if ($data->{'license_detail_'.$i}) {
+                        $licenses = new License;
+                        $licenses->license_users_id = $user->id;
+                        $licenses->license_date = $dateTimeString;
+                        $licenses->license_detail = $data->{'license_detail_'.$i};
+                        $licenses->save();
+                    }
+                } else {
+                    if ($data->{'license_detail_'.$i}) {
+                        License::where('id', $data->{'license_id_'.$i})->update([
+                            'license_date' => $dateTimeString,
+                            'license_detail' => $data->{'license_detail_'.$i}
+                        ]);
+                    } else {
+                        License::where('id', $data->{'license_id_'.$i})->delete();
+                    }
+                }
+            }
+
+            /**
+             *
+             */
         }
 
         return view('home');
@@ -138,9 +172,26 @@ class HomeController extends Controller
         $user = Auth::user();
 
         if ($user) {
-            $resumes = Resumes::where('resumes_users_id', $user->id)->get();
+            $resumes_schools = Resumes::where('resumes_users_id', $user->id)
+                ->where('resumes_organization_name', 'LIKE', '%学校%')
+                ->orWhere('resumes_organization_name', 'LIKE', '%高校%')
+                ->orWhere('resumes_organization_name', 'LIKE', '%大学%')
+                ->orderby('resumes_date')->get();
 
-            return view('resume', compact('user', 'resumes'));
+            $resumes_companies = Resumes::where('resumes_users_id', $user->id)
+                ->where('resumes_organization_name', 'NOT LIKE', '%学校%')
+                ->where('resumes_organization_name', 'NOT LIKE', '%高校%')
+                ->where('resumes_organization_name', 'NOT LIKE', '%大学%')
+                ->orderby('resumes_date')->get();
+
+            $licenses = License::where('license_users_id', $user->id)->orderby('license_date')->get();
+
+            return view('resume', compact(
+                'user',
+                'resumes_schools',
+                'resumes_companies',
+                'licenses'
+            ));
         }
     }
 }

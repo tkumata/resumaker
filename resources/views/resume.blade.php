@@ -143,12 +143,21 @@
         <div class="history">
             <table>
                 <tr><th>年</th><th>月</th><th>学歴・職歴</th></tr>
-                @foreach ($resumes as $resume)
+                <tr><td></td><td></td><td><h3>学歴</h3></td></tr>
+                @foreach ($resumes_schools as $resumes_school)
                 <?php
-                $year = date('Y', strtotime($resume->resumes_date));
-                $month = date('m', strtotime($resume->resumes_date));
+                $year = date('Y', strtotime($resumes_school->resumes_date));
+                $month = date('m', strtotime($resumes_school->resumes_date));
                 ?>
-                <tr><td>{{ $year }}</td><td>{{ $month }}</td><td>{{ $resume->resumes_organization_name }}</td></tr>
+                <tr><td>{{ $year }}</td><td>{{ $month }}</td><td>{{ $resumes_school->resumes_organization_name }}</td></tr>
+                @endforeach
+                <tr><td></td><td></td><td><h3>職歴</h3></td></tr>
+                @foreach ($resumes_companies as $resumes_company)
+                <?php
+                $year = date('Y', strtotime($resumes_company->resumes_date));
+                $month = date('m', strtotime($resumes_company->resumes_date));
+                ?>
+                <tr><td>{{ $year }}</td><td>{{ $month }}</td><td>{{ $resumes_company->resumes_organization_name }}</td></tr>
                 @endforeach
                 <tr><td></td><td></td><td><div class="table-lastline">以上</div></td></tr>
             </table>
@@ -239,11 +248,16 @@
         <div class="license">
             <table>
                 <tr><th>年</th><th>月</th><th>免許・資格</th></tr>
-                <tr><td>yyyy</td><td>mm</td><td>普通ルンバ運転免許</td></tr>
-                <tr><td>yyyy</td><td>mm</td><td>超上級情報処理技術者試験　合格</td></tr>
+                @foreach ($licenses as $license)
+                <?php
+                $year = date('Y', strtotime($license->license_date));
+                $month = date('m', strtotime($license->license_date));
+                ?>
+                <tr><td>{{ $year }}</td><td>{{ $month }}</td><td>{{ $license->license_detail }}</td></tr>
+                @endforeach
             </table>
             <div>
-                <p>TOEIC 100000点</p>
+                <p></p>
             </div>
         </div>
 

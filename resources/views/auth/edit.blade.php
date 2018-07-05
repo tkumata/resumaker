@@ -208,6 +208,44 @@
 
                         <hr />
 
+                        {{-- 資格部分 --}}
+                        <?php $i = 1; ?>
+                        @forelse ($licenses as $license)
+                        <?php
+                        $year = date('Y', strtotime($license->license_date));
+                        $month = date('m', strtotime($license->license_date));
+                        ?>
+                        <div class="form-group row">
+                            <label for="license_{{ $i }}" class="col-md-4 col-form-label text-md-right">{{ __('License ').$i }}</label>
+
+                            <div class="input-group col-md-6">
+                                <input type="hidden" name="license_id_{{ $i }}" value="{{ $license->id }}">
+                                <input id="license_year_{{ $i }}" type="license_year_{{ $i }}" class="form-control{{ $errors->has('license_year_{$i}') ? ' is-invalid' : '' }}" name="license_year_{{ $i }}" value="{{ old('license_year_{$i}', $year) }}" placeholder="西暦">
+                                <input id="license_month_{{ $i }}" type="license_month_{{ $i }}" class="form-control{{ $errors->has('license_month_{$i}') ? ' is-invalid' : '' }}" name="license_month_{{ $i }}" value="{{ old('license_month_{$i}', $month) }}">
+                                <input id="license_detail_{{ $i }}" type="license_detail_{{ $i }}" class="form-control{{ $errors->has('license_detail_{$i}') ? ' is-invalid' : '' }}" name="license_detail_{{ $i }}" value="{{ old('license_detail_{$i}', $license->license_detail) }}">
+                            </div>
+                        </div>
+                        <?php $i++; ?>
+                        @empty
+                        <?php $i = 0; ?>
+                        @endforelse
+                        <?php
+                        if (empty($count)) {
+                            $count = 0;
+                        }
+                        ?>
+                        @for ($n = $i+1; $n < 7; $n++)
+                        <div class="form-group row">
+                            <label for="license_{{ $n }}" class="col-md-4 col-form-label text-md-right">{{ __('license ').$n }}</label>
+
+                            <div class="input-group col-md-6">
+                                <input id="license_year_{{ $n }}" type="license_year_{{ $n }}" class="form-control{{ $errors->has('license_year_{$n}') ? ' is-invalid' : '' }}" name="license_year_{{ $n }}" value="{{ old('license_year_{$n}') }}" placeholder="西暦">
+                                <input id="license_month_{{ $n }}" type="license_month_{{ $n }}" class="form-control{{ $errors->has('license_month_{$n}') ? ' is-invalid' : '' }}" name="license_month_{{ $n }}" value="{{ old('license_month_{$n}') }}">
+                                <input id="license_detail_{{ $n }}" type="license_detail_{{ $n }}" class="form-control{{ $errors->has('license_detail_{$n}') ? ' is-invalid' : '' }}" name="license_detail_{{ $n }}" value="{{ old('license_detail_{$n}') }}">
+                            </div>
+                        </div>
+                        @endfor
+
                         {{-- submit button --}}
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
