@@ -82,23 +82,22 @@ class HomeController extends Controller
                     $dateTimeString = $data->{'resume_year_'.$i} . '-' .
                         sprintf('%02d', $data->{'resume_month_'.$i}) . '-' .
                         '01 00:00:00';
-                    $resumeUnixTime = strtotime($dateTimeString);
                 } else {
-                    $resumeUnixTime = null;
+                    $dateTimeString = null;
                 }
 
                 if (empty($data->{'resume_id_'.$i})) {
                     if ($data->{'resume_org_'.$i}) {
                         $resumes = new Resumes;
                         $resumes->resumes_users_id = $user->id;
-                        $resumes->resumes_date = $resumeUnixTime;
+                        $resumes->resumes_date = $dateTimeString;
                         $resumes->resumes_organization_name = $data->{'resume_org_'.$i};
                         $resumes->save();
                     }
                 } else {
                     if ($data->{'resume_org_'.$i}) {
                         Resumes::where('id', $data->{'resume_id_'.$i})->update([
-                            'resumes_date' => $resumeUnixTime,
+                            'resumes_date' => $dateTimeString,
                             'resumes_organization_name' => $data->{'resume_org_'.$i}
                         ]);
                     } else {

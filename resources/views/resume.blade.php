@@ -144,7 +144,11 @@
             <table>
                 <tr><th>年</th><th>月</th><th>学歴・職歴</th></tr>
                 @foreach ($resumes as $resume)
-                <tr><td>yyyy</td><td>mm</td><td>{{ $resume->resumes_organization_name }}</td></tr>
+                <?php
+                $year = date('Y', strtotime($resume->resumes_date));
+                $month = date('m', strtotime($resume->resumes_date));
+                ?>
+                <tr><td>{{ $year }}</td><td>{{ $month }}</td><td>{{ $resume->resumes_organization_name }}</td></tr>
                 @endforeach
                 <tr><td></td><td></td><td><div class="table-lastline">以上</div></td></tr>
             </table>

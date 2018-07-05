@@ -13,20 +13,6 @@
 
                         {{-- 個人情報部分 --}}
                         <div class="form-group row">
-                            <label for="name_kana" class="col-md-4 col-form-label text-md-right">{{ __('Name Kana') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name_kana" type="text" class="form-control{{ $errors->has('name_kana') ? ' is-invalid' : '' }}" name="name_kana" value="{{ old('name_kana', $user->name_kana) }}" required autofocus>
-
-                                @if ($errors->has('name_kana'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name_kana') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
@@ -35,6 +21,20 @@
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="name_kana" class="col-md-4 col-form-label text-md-right">{{ __('Name Kana') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name_kana" type="text" class="form-control{{ $errors->has('name_kana') ? ' is-invalid' : '' }}" name="name_kana" value="{{ old('name_kana', $user->name_kana) }}" required>
+
+                                @if ($errors->has('name_kana'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('name_kana') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -58,7 +58,7 @@
                             <label for="birthday" class="col-md-4 col-form-label text-md-right">{{ __('Birthday') }}</label>
 
                             <div class="col-md-6">
-                                <input id="birthday" type="birthday" class="form-control{{ $errors->has('birthday') ? ' is-invalid' : '' }}" name="birthday" value="{{ old('birthday', $user->birthday) }}">
+                                <input id="birthday" type="birthday" class="form-control{{ $errors->has('birthday') ? ' is-invalid' : '' }}" name="birthday" value="{{ old('birthday', $user->birthday) }}" required>
 
                                 @if ($errors->has('birthday'))
                                     <span class="invalid-feedback" role="alert">
@@ -72,7 +72,7 @@
                             <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
 
                             <div class="col-md-6">
-                                <input id="gender" type="gender" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender" value="{{ old('gender', $user->gender) }}">
+                                <input id="gender" type="gender" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender" value="{{ old('gender', $user->gender) }}" required>
 
                                 @if ($errors->has('gender'))
                                     <span class="invalid-feedback" role="alert">
@@ -100,7 +100,7 @@
                             <label for="address_kana" class="col-md-4 col-form-label text-md-right">{{ __('Address Kana') }}</label>
 
                             <div class="col-md-6">
-                                <input id="address_kana" type="address_kana" class="form-control{{ $errors->has('address_kana') ? ' is-invalid' : '' }}" name="address_kana" value="{{ old('address_kana', $user->address_kana) }}">
+                                <input id="address_kana" type="address_kana" class="form-control{{ $errors->has('address_kana') ? ' is-invalid' : '' }}" name="address_kana" value="{{ old('address_kana', $user->address_kana) }}" required>
 
                                 @if ($errors->has('address_kana'))
                                     <span class="invalid-feedback" role="alert">
@@ -114,7 +114,7 @@
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="address" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" value="{{ old('address', $user->address) }}">
+                                <input id="address" type="address" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" value="{{ old('address', $user->address) }}" required>
 
                                 @if ($errors->has('address'))
                                     <span class="invalid-feedback" role="alert">
@@ -166,6 +166,8 @@
                             </div>
                         </div>
 
+                        <hr />
+
                         {{-- 履歴部分 --}}
                         <?php $i = 1; ?>
                         @forelse ($resumes as $resume)
@@ -178,7 +180,7 @@
 
                             <div class="input-group col-md-6">
                                 <input type="hidden" name="resume_id_{{ $i }}" value="{{ $resume->id }}">
-                                <input id="resume_year_{{ $i }}" type="resume_year_{{ $i }}" class="form-control{{ $errors->has('resume_year_{$i}') ? ' is-invalid' : '' }}" name="resume_year_{{ $i }}" value="{{ old('resume_year_{$i}', $year) }}">
+                                <input id="resume_year_{{ $i }}" type="resume_year_{{ $i }}" class="form-control{{ $errors->has('resume_year_{$i}') ? ' is-invalid' : '' }}" name="resume_year_{{ $i }}" value="{{ old('resume_year_{$i}', $year) }}" placeholder="西暦">
                                 <input id="resume_month_{{ $i }}" type="resume_month_{{ $i }}" class="form-control{{ $errors->has('resume_month_{$i}') ? ' is-invalid' : '' }}" name="resume_month_{{ $i }}" value="{{ old('resume_month_{$i}', $month) }}">
                                 <input id="resume_org_{{ $i }}" type="resume_org_{{ $i }}" class="form-control{{ $errors->has('resume_org_{$i}') ? ' is-invalid' : '' }}" name="resume_org_{{ $i }}" value="{{ old('resume_org_{$i}', $resume->resumes_organization_name) }}">
                             </div>
@@ -197,12 +199,14 @@
                             <label for="resume_{{ $n }}" class="col-md-4 col-form-label text-md-right">{{ __('Resume ').$n }}</label>
 
                             <div class="input-group col-md-6">
-                                <input id="resume_year_{{ $n }}" type="resume_year_{{ $n }}" class="form-control{{ $errors->has('resume_year_{$n}') ? ' is-invalid' : '' }}" name="resume_year_{{ $n }}" value="{{ old('resume_year_{$n}') }}">
+                                <input id="resume_year_{{ $n }}" type="resume_year_{{ $n }}" class="form-control{{ $errors->has('resume_year_{$n}') ? ' is-invalid' : '' }}" name="resume_year_{{ $n }}" value="{{ old('resume_year_{$n}') }}" placeholder="西暦">
                                 <input id="resume_month_{{ $n }}" type="resume_month_{{ $n }}" class="form-control{{ $errors->has('resume_month_{$n}') ? ' is-invalid' : '' }}" name="resume_month_{{ $n }}" value="{{ old('resume_month_{$n}') }}">
                                 <input id="resume_org_{{ $n }}" type="resume_org_{{ $n }}" class="form-control{{ $errors->has('resume_org_{$n}') ? ' is-invalid' : '' }}" name="resume_org_{{ $n }}" value="{{ old('resume_org_{$n}') }}">
                             </div>
                         </div>
                         @endfor
+
+                        <hr />
 
                         {{-- submit button --}}
                         <div class="form-group row mb-0">
