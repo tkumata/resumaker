@@ -1,0 +1,9 @@
+#trim-border {
+    width: 30mm;
+    height: 40mm;
+    border: 2px dashed #999;
+}
+#trim-border #img {
+    max-width: 100%;
+    height: auto;
+}

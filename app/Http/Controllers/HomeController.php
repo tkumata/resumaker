@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Intervention\Image\Facades\Image as Image;
+use File;
 use Users;
 use App\Resumes;
 use App\License;
 use Auth;
-use Intervention\Image\Facades\Image as Image;
 
 class HomeController extends Controller
 {
@@ -58,6 +59,10 @@ class HomeController extends Controller
     {
         $user = Auth::user();
 
+        $validator = \Validator::make($data->all(), [
+            'file' => 'max:5120', //5MB
+        ]);
+
         if ($user) {
             /**
              * Users
@@ -75,16 +80,24 @@ class HomeController extends Controller
             $user->fax = $data->fax;
             // Image
             if (Input::file('image')) {
+                // Delete old image at first.
+                if ($user->img_path) {
+                    $oldpath = public_path('profilepics/' . $user->img_path);
+                    File::delete($oldpath);
+                }
+
+                // Next, save new image.
                 $image = Input::file('image');
-                $filename  = time() . '.' . $image->getClientOriginalExtension();
+                $filename  = $user->id . '_' . time() . '.' . $image->getClientOriginalExtension();
                 $path = public_path('profilepics/' . $filename);
-                Image::make($image->getRealPath())->resize(
-                    150,
-                    null,
-                    function ($constraint) {
-                        $constraint->aspectRatio();
-                    }
-                )->save($path);
+                Image::make($image->getRealPath())->fit(300, 400)->save($path);
+                // Image::make($image->getRealPath())->resize(
+                //     300,
+                //     null,
+                //     function ($constraint) {
+                //         $constraint->aspectRatio();
+                //     }
+                // )->save($path);
                 $user->img_path = $filename;
             }
             // Save
@@ -97,6 +110,7 @@ class HomeController extends Controller
              * @var $data->{'resume_org_'.$i}
              */
             for ($i = 1; $i < 12; $i++) {
+                // Make time string. e.f. 1991-04-01 00:00:00
                 if ($data->{'resume_year_'.$i} && $data->{'resume_month_'.$i}) {
                     $dateTimeString = $data->{'resume_year_'.$i} . '-' .
                         sprintf('%02d', $data->{'resume_month_'.$i}) . '-' .
@@ -105,6 +119,7 @@ class HomeController extends Controller
                     $dateTimeString = null;
                 }
 
+                // Insert or Update.
                 if (empty($data->{'resume_id_'.$i})) {
                     if ($data->{'resume_org_'.$i}) {
                         $resumes = new Resumes;

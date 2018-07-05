@@ -11,4 +11,5 @@ composer deump-autoload
 
 ## Todo
 
-- Open resume to whom knows the URL only.
+- Open resume to whom knows the URL.
+- Implementation a feature which removing personal image.
