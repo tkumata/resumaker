@@ -173,9 +173,12 @@ class HomeController extends Controller
 
         if ($user) {
             $resumes_schools = Resumes::where('resumes_users_id', $user->id)
-                ->where('resumes_organization_name', 'LIKE', '%学校%')
-                ->orWhere('resumes_organization_name', 'LIKE', '%高校%')
-                ->orWhere('resumes_organization_name', 'LIKE', '%大学%')
+                ->where(function ($query) {
+                    // A and (B or C) の (B or C) 部分
+                    $query->where('resumes_organization_name', 'LIKE', '%学校%')
+                        ->orWhere('resumes_organization_name', 'LIKE', '%高校%')
+                        ->orWhere('resumes_organization_name', 'LIKE', '%大学%');
+                })
                 ->orderby('resumes_date')->get();
 
             $resumes_companies = Resumes::where('resumes_users_id', $user->id)

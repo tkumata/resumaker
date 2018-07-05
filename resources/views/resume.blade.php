@@ -143,7 +143,11 @@
         <div class="history">
             <table>
                 <tr><th>年</th><th>月</th><th>学歴・職歴</th></tr>
+
                 <tr><td></td><td></td><td><h3>学歴</h3></td></tr>
+                @if (empty($resumes_schools))
+                <tr><td></td><td></td><td>なし</td></tr>
+                @else
                 @foreach ($resumes_schools as $resumes_school)
                 <?php
                 $year = date('Y', strtotime($resumes_school->resumes_date));
@@ -151,7 +155,12 @@
                 ?>
                 <tr><td>{{ $year }}</td><td>{{ $month }}</td><td>{{ $resumes_school->resumes_organization_name }}</td></tr>
                 @endforeach
+                @endif
+
                 <tr><td></td><td></td><td><h3>職歴</h3></td></tr>
+                @if (empty($resumes_companies))
+                <tr><td></td><td></td><td>なし</td></tr>
+                @else
                 @foreach ($resumes_companies as $resumes_company)
                 <?php
                 $year = date('Y', strtotime($resumes_company->resumes_date));
@@ -159,6 +168,7 @@
                 ?>
                 <tr><td>{{ $year }}</td><td>{{ $month }}</td><td>{{ $resumes_company->resumes_organization_name }}</td></tr>
                 @endforeach
+                @endif
                 <tr><td></td><td></td><td><div class="table-lastline">以上</div></td></tr>
             </table>
         </div>
