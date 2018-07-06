@@ -1,15 +1,27 @@
 
 ## About Resumaker
 
-This app makes a resume as Japanes style.
+This is a Laravel app which makes a resume as Japanes style.
+
+![](resumaker1.png)
+![](resumaker2.png)
 
 ## Adding
+
 ```
 composer require intervention/image
-composer deump-autoload
 ```
 
 ## Todo
 
-- Open resume to whom knows the URL.
+- Open resume to somebody whom knows the URL.
+- Convert AD to Japanese calendar automatically.
 - Implementation a feature which removing personal image.
+
+## License
+
+MIT
+
+## Reference
+
+https://qiita.com/liarnose/items/bfcc2c731665464acb2a
