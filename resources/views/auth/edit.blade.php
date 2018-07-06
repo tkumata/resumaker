@@ -267,6 +267,73 @@
                         </div>
                         @endfor
 
+                        <hr />
+
+                        <div class="form-group row">
+                            <label for="hobby" class="col-md-4 col-form-label text-md-right">{{ __('Hobby') }}</label>
+
+                            <div class="col-md-6">
+                                @if ($others)
+                                <input type="hidden" name="others_id" value="{{ $others->id }}">
+                                <textarea id="hobby" type="hobby" class="form-control" name="hobby" rows="5">{{ old('hobby', $others->others_hobby) }}</textarea>
+                                @else
+                                <textarea id="hobby" type="hobby" class="form-control" name="hobby" rows="5">{{ old('hobby') }}</textarea>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="special" class="col-md-4 col-form-label text-md-right">{{ __('Special') }}</label>
+
+                            <div class="col-md-6">
+                                @if ($others)
+                                <input type="hidden" name="others_id" value="{{ $others->id }}">
+                                <textarea id="special" type="special" class="form-control" name="special" rows="5">{{ old('special', $others->others_special) }}</textarea>
+                                @else
+                                <textarea id="special" type="special" class="form-control" name="special" rows="5">{{ old('special') }}</textarea>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="reason" class="col-md-4 col-form-label text-md-right">{{ __('Reason for application') }}</label>
+
+                            <div class="col-md-6">
+                                @if ($others)
+                                <input type="hidden" name="others_id" value="{{ $others->id }}">
+                                <textarea id="reason" type="reason" class="form-control" name="reason" rows="5">{{ old('reason', $others->others_reason) }}</textarea>
+                                @else
+                                <textarea id="reason" type="reason" class="form-control" name="reason" rows="5">{{ old('reason') }}</textarea>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="pr" class="col-md-4 col-form-label text-md-right">{{ __('PR') }}</label>
+
+                            <div class="col-md-6">
+                                @if ($others)
+                                <input type="hidden" name="others_id" value="{{ $others->id }}">
+                                <textarea id="pr" type="pr" class="form-control" name="pr" rows="5">{{ old('pr', $others->others_pr) }}</textarea>
+                                @else
+                                <textarea id="pr" type="pr" class="form-control" name="pr" rows="5">{{ old('pr') }}</textarea>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="expectation" class="col-md-4 col-form-label text-md-right">{{ __('Expectation') }}</label>
+
+                            <div class="col-md-6">
+                                @if ($others)
+                                <input type="hidden" name="others_id" value="{{ $others->id }}">
+                                <textarea id="expectation" type="expectation" class="form-control" name="expectation" rows="5">{{ old('expectation', $others->others_expectation) }}</textarea>
+                                @else
+                                <textarea id="expectation" type="expectation" class="form-control" name="expectation" rows="5">{{ old('expectation') }}</textarea>
+                                @endif
+                            </div>
+                        </div>
+
                         {{-- submit button --}}
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

@@ -279,35 +279,55 @@
         <div class="hobby">
             <h2>趣味</h2>
             <div>
-                <p>特にありません。</p>
+                @if ($others)
+                <p>{{ $others->others_hobby }}</p>
+                @else
+                <p></p>
+                @endif
             </div>
         </div>
         
         <div class="skill">
             <h2>特技</h2>
             <div>
-                <p>特にありません。</p>
+                @if ($others)
+                <p>{{ $others->others_special }}
+                @else
+                <p></p>
+                @endif
             </div>
         </div>
         
         <div class="reason">
             <h2>志望動機</h2>
             <div>
-                <p>太陽が黄色かったからです。</p>
+                @if ($others)
+                <p>{{ $others->others_reason }}</p>
+                @else
+                <p></p>
+                @endif
             </div>
         </div>
         
         <div class="selling-point">
             <h2>自己アピール</h2>
             <div>
-                <p>特にありません。</p>
+                @if ($others)
+                <p>{{ $others->others_pr }}</p>
+                @else
+                <p></p>
+                @endif
             </div>
         </div>
         
         <div class="treatment">
             <h2>希望待遇</h2>
             <div>
-                <p>全て募集要項に準拠。</p>
+                @if ($others)
+                <p>{{ $others->others_expectation }}</p>
+                @else
+                <p></p>
+                @endif
             </div>
         </div>
     </div>

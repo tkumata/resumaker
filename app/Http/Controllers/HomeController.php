@@ -9,6 +9,7 @@ use File;
 use Users;
 use App\Resumes;
 use App\License;
+use App\Others;
 use Auth;
 
 class HomeController extends Controller
@@ -45,8 +46,10 @@ class HomeController extends Controller
         if ($user) {
             $resumes = Resumes::where('resumes_users_id', $user->id)->get();
             $licenses = License::where('license_users_id', $user->id)->get();
+            $others = Others::where('others_users_id', $user->id)->first();
+            // dd($others);
 
-            return view('auth.edit', compact('user', 'resumes', 'licenses'));
+            return view('auth.edit', compact('user', 'resumes', 'licenses', 'others'));
         }
     }
 
@@ -173,8 +176,36 @@ class HomeController extends Controller
             }
 
             /**
-             *
+             * Others
              */
+            if ($data->others_id) {
+                Others::where('id', $data->others_id)->update([
+                    'others_hobby' => $data->hobby,
+                    'others_special' => $data->special,
+                    'others_reason' => $data->reason,
+                    'others_pr' => $data->pr,
+                    'others_expectation' => $data->expectation
+                ]);
+            } else {
+                $others = new Others;
+                $others->others_users_id = $user->id;
+                if ($data->hobby) {
+                    $others->others_hobby = $data->hobby;
+                }
+                if ($data->special) {
+                    $others->others_special = $data->special;
+                }
+                if ($data->reason) {
+                    $others->others_reason = $data->reason;
+                }
+                if ($data->pr) {
+                    $others->others_pr = $data->pr;
+                }
+                if ($data->expectation) {
+                    $others->others_expectation = $data->expectation;
+                }
+                $others->save();
+            }
         }
 
         return view('home');
@@ -221,11 +252,14 @@ class HomeController extends Controller
 
             $licenses = License::where('license_users_id', $user->id)->orderby('license_date')->get();
 
+            $others = Others::where('others_users_id', $user->id)->first();
+
             return view('resume', compact(
                 'user',
                 'resumes_schools',
                 'resumes_companies',
-                'licenses'
+                'licenses',
+                'others'
             ));
         }
     }
