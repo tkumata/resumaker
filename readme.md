@@ -16,6 +16,7 @@ composer require intervention/image
 
 - Open resume to somebody whom knows the URL.
 - Convert AD to Japanese calendar automatically.
+- Improve UI.
 - Implementation a feature which removing personal image.
 
 ## License
