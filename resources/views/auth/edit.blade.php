@@ -314,9 +314,9 @@
                             <div class="col-md-6">
                                 @if ($others)
                                 <input type="hidden" name="others_id" value="{{ $others->id }}">
-                                <textarea id="pr" type="pr" class="form-control" name="pr" rows="5">{{ old('pr', $others->others_pr) }}</textarea>
+                                <textarea id="pr" type="pr" class="form-control" name="pr" rows="7">{{ old('pr', $others->others_pr) }}</textarea>
                                 @else
-                                <textarea id="pr" type="pr" class="form-control" name="pr" rows="5">{{ old('pr') }}</textarea>
+                                <textarea id="pr" type="pr" class="form-control" name="pr" rows="7">{{ old('pr') }}</textarea>
                                 @endif
                             </div>
                         </div>
@@ -327,9 +327,9 @@
                             <div class="col-md-6">
                                 @if ($others)
                                 <input type="hidden" name="others_id" value="{{ $others->id }}">
-                                <textarea id="expectation" type="expectation" class="form-control" name="expectation" rows="5">{{ old('expectation', $others->others_expectation) }}</textarea>
+                                <textarea id="expectation" type="expectation" class="form-control" name="expectation" rows="4">{{ old('expectation', $others->others_expectation) }}</textarea>
                                 @else
-                                <textarea id="expectation" type="expectation" class="form-control" name="expectation" rows="5">{{ old('expectation') }}</textarea>
+                                <textarea id="expectation" type="expectation" class="form-control" name="expectation" rows="4">{{ old('expectation') }}</textarea>
                                 @endif
                             </div>
                         </div>

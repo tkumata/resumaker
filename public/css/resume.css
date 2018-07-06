@@ -307,60 +307,88 @@ h1 {
     width: 74mm;
     height: 28mm;
     padding: 0.5mm;
-    text-align: justify; }
+    text-align: justify;
+}
+.hobby div p {
+    margin: 3px 10px;
+}
 
 .skill {
   top: 84mm;
-  left: 74mm; }
-  .skill h2 {
+  left: 74mm;
+}
+.skill h2 {
     width: 74mm;
     height: 6mm;
-    text-align: center; }
-  .skill div {
+    text-align: center;
+}
+.skill div {
     top: 6mm;
     width: 74mm;
     height: 28mm;
     padding: 0.5mm;
-    text-align: justify; }
+    text-align: justify;
+}
+.skill div p {
+    margin: 3px 10px;
+}
 
 .reason {
-  top: 122mm; }
-  .reason h2 {
+  top: 122mm;
+}
+.reason h2 {
     width: 148mm;
     height: 6mm;
-    text-align: center; }
-  .reason div {
+    text-align: center;
+}
+.reason div {
     top: 6mm;
     width: 148mm;
     height: 28mm;
     padding: 0.5mm;
-    text-align: justify; }
+    text-align: justify;
+}
+.reason div p {
+    margin: 3px 10px;
+}
 
 .selling-point {
-  top: 154mm; }
-  .selling-point h2 {
+    top: 154mm;
+}
+.selling-point h2 {
     width: 148mm;
     height: 6mm;
-    text-align: center; }
-  .selling-point div {
+    text-align: center;
+}
+.selling-point div {
     top: 6mm;
     width: 148mm;
     height: 38mm;
     padding: 0.5mm;
-    text-align: justify; }
+    text-align: justify;
+}
+.selling-point div p {
+    margin: 3px 10px;
+}
 
 .treatment {
-  top: 204mm; }
-  .treatment h2 {
+    top: 204mm;
+}
+.treatment h2 {
     width: 148mm;
     height: 6mm;
-    text-align: center; }
-  .treatment div {
+    text-align: center;
+}
+.treatment div {
     top: 6mm;
     width: 148mm;
     height: 10mm;
     padding: 0.5mm;
-    text-align: justify; }
+    text-align: justify;
+}
+.treatment div p {
+    margin: 3px 10px;
+}
 
 @page {
   size: 182mm 257mm;
