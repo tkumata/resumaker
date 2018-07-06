@@ -321,7 +321,7 @@
         </div>
         
         <div class="treatment">
-            <h2>希望待遇</h2>
+            <h2>希望</h2>
             <div>
                 @if ($others)
                 <p>{{ $others->others_expectation }}</p>
