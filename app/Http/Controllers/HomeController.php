@@ -216,20 +216,6 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function editCareers()
-    {
-        $user = Auth::user();
-
-        if ($user) {
-            return view('editCareers', compact('user'));
-        }
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function previewResume()
     {
         $user = Auth::user();

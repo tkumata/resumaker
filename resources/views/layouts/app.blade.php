@@ -60,10 +60,16 @@
                                         {{ __('Dashboard') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('preview') }}">
-                                        {{ __('Preview') }}
+                                        {{ __('Preview resumes') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('editUser') }}">
-                                        {{ __('Edit') }}
+                                        {{ __('Edit resumes') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('previewCareers') }}">
+                                        {{ __('Preview careers') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('editCareers') }}">
+                                        {{ __('Edit careers') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

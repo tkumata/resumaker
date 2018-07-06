@@ -3,10 +3,10 @@
 
 This is a Laravel app which makes a resume as Japanes style.
 
-![](resumaker1.png)
-![](resumaker2.png)
+[![editor](./resumaker1.png)](resumaker1.png)
+[![resume](./resumaker2.png)](resumaker2.png)
 
-## Adding
+## Required
 
 ```
 composer require intervention/image
@@ -14,6 +14,7 @@ composer require intervention/image
 
 ## Todo
 
+- Implementation career table.
 - Open resume to somebody whom knows the URL.
 - Convert AD to Japanese calendar automatically.
 - Improve UI.
