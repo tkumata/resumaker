@@ -16,14 +16,16 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+//
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/edit', 'HomeController@editUser')->name('editUser');
-Route::post('/edit', 'HomeController@updateUser')->name('updateUser');
+//
+Route::get('/edit', 'HomeController@edit')->name('editUser');
+Route::post('/edit', 'HomeController@update')->name('updateUser');
+//
 Route::get('/editcareers', 'CareersController@edit')->name('editCareers');
 Route::post('/editcareers', 'CareersController@update')->name('updateCareers');
-
+//
 Route::get('/preview', 'HomeController@previewResume')->name('preview');
 Route::get('/previewCareers', 'CareersController@preview')->name('previewCareers');
-
+//
 Route::get('/{code}', 'HomeController@openResume')->name('openResume');

@@ -39,7 +39,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function editUser()
+    public function edit()
     {
         $user = Auth::user();
 
@@ -58,7 +58,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function updateUser(Request $data)
+    public function update(Request $data)
     {
         $user = Auth::user();
 

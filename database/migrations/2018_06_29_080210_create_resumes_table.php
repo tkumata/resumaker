@@ -18,6 +18,7 @@ class CreateResumesTable extends Migration
             $table->bigInteger('resumes_users_id')->nullable();
             $table->dateTime('resumes_date')->nullable();
             $table->string('resumes_organization_name')->nullable();
+            $table->text('resumes_detail')->nullable();
             $table->timestamps();
         });
     }

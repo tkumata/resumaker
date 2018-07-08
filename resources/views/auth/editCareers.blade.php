@@ -12,19 +12,16 @@
                         @csrf
 
                         <?php $i = 1; ?>
-                        @forelse ($careers as $career)
-                        <?php
-                        $year = date('Y', strtotime($career->careers_date));
-                        $month = date('m', strtotime($career->careers_date));
-                        ?>
+                        @forelse ($resumes as $resume)
                         <div class="form-group row">
-                            <label for="career_{{ $i }}" class="col-md-4 col-form-label text-md-right">{{ __('career ').$i }}</label>
+                            <label for="resumes_{{ $i }}" class="col-md-4 col-form-label text-md-right">{{ __('Career ').$i }}</label>
 
                             <div class="input-group col-md-6">
-                                <input type="hidden" name="career_id_{{ $i }}" value="{{ $career->id }}">
-                                <input id="career_year_{{ $i }}" type="career_year_{{ $i }}" class="form-control{{ $errors->has('career_year_{$i}') ? ' is-invalid' : '' }}" name="career_year_{{ $i }}" value="{{ old('career_year_{$i}', $year) }}" placeholder="西暦">
-                                <input id="career_month_{{ $i }}" type="career_month_{{ $i }}" class="form-control{{ $errors->has('career_month_{$i}') ? ' is-invalid' : '' }}" name="career_month_{{ $i }}" value="{{ old('career_month_{$i}', $month) }}">
-                                <input id="career_org_{{ $i }}" type="career_org_{{ $i }}" class="form-control{{ $errors->has('career_org_{$i}') ? ' is-invalid' : '' }}" name="career_org_{{ $i }}" value="{{ old('career_org_{$i}', $career->careers_organization_name) }}">
+                                <?php
+                                $company_name = preg_replace("/入社/", '', $resume->resumes_organization_name);
+                                ?>
+                                {{ $company_name }}
+                                <textarea id="resumes_detail_{{ $resume->id }}" type="resumes_detail_{{ $resume->id }}" class="form-control" name="resumes_detail_{{ $resume->id }}" rows="20">{{ old('resumes_detail_{$resume->id}', $resume->resumes_detail) }}</textarea>
                             </div>
                         </div>
                         <?php $i++; ?>
