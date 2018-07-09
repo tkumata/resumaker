@@ -167,7 +167,9 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Image (aspect 3:4)') }}</label>
+                            <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}<br />
+                            <span>Max size: {{ (int)(ini_get('upload_max_filesize')) }} MB / Aspect: 3:4</span>
+</label>
 
                             <div class="col-md-6">
                                 <div id="trim-border">
@@ -201,7 +203,7 @@
 
                             <div class="input-group col-md-6">
                                 <input type="hidden" name="resume_id_{{ $i }}" value="{{ $resume->id }}">
-                                <input id="resume_year_{{ $i }}" type="resume_year_{{ $i }}" class="form-control{{ $errors->has('resume_year_{$i}') ? ' is-invalid' : '' }}" name="resume_year_{{ $i }}" value="{{ old('resume_year_{$i}', $year) }}" placeholder="西暦">
+                                <input id="resume_year_{{ $i }}" type="resume_year_{{ $i }}" class="form-control{{ $errors->has('resume_year_{$i}') ? ' is-invalid' : '' }}" name="resume_year_{{ $i }}" value="{{ old('resume_year_{$i}', $year) }}">
                                 <input id="resume_month_{{ $i }}" type="resume_month_{{ $i }}" class="form-control{{ $errors->has('resume_month_{$i}') ? ' is-invalid' : '' }}" name="resume_month_{{ $i }}" value="{{ old('resume_month_{$i}', $month) }}">
                                 <input id="resume_org_{{ $i }}" type="resume_org_{{ $i }}" class="form-control{{ $errors->has('resume_org_{$i}') ? ' is-invalid' : '' }}" name="resume_org_{{ $i }}" value="{{ old('resume_org_{$i}', $resume->resumes_organization_name) }}">
                             </div>
@@ -220,9 +222,9 @@
                             <label for="resume_{{ $n }}" class="col-md-4 col-form-label text-md-right">{{ __('Resume ').$n }}</label>
 
                             <div class="input-group col-md-6">
-                                <input id="resume_year_{{ $n }}" type="resume_year_{{ $n }}" class="form-control{{ $errors->has('resume_year_{$n}') ? ' is-invalid' : '' }}" name="resume_year_{{ $n }}" value="{{ old('resume_year_{$n}') }}" placeholder="西暦">
-                                <input id="resume_month_{{ $n }}" type="resume_month_{{ $n }}" class="form-control{{ $errors->has('resume_month_{$n}') ? ' is-invalid' : '' }}" name="resume_month_{{ $n }}" value="{{ old('resume_month_{$n}') }}">
-                                <input id="resume_org_{{ $n }}" type="resume_org_{{ $n }}" class="form-control{{ $errors->has('resume_org_{$n}') ? ' is-invalid' : '' }}" name="resume_org_{{ $n }}" value="{{ old('resume_org_{$n}') }}">
+                                <input id="resume_year_{{ $n }}" type="resume_year_{{ $n }}" class="form-control{{ $errors->has('resume_year_{$n}') ? ' is-invalid' : '' }}" name="resume_year_{{ $n }}" value="{{ old('resume_year_{$n}') }}" placeholder="年(西暦)">
+                                <input id="resume_month_{{ $n }}" type="resume_month_{{ $n }}" class="form-control{{ $errors->has('resume_month_{$n}') ? ' is-invalid' : '' }}" name="resume_month_{{ $n }}" value="{{ old('resume_month_{$n}') }}" placeholder="月">
+                                <input id="resume_org_{{ $n }}" type="resume_org_{{ $n }}" class="form-control{{ $errors->has('resume_org_{$n}') ? ' is-invalid' : '' }}" name="resume_org_{{ $n }}" value="{{ old('resume_org_{$n}') }}" placeholder="組織名">
                             </div>
                         </div>
                         @endfor
@@ -241,7 +243,7 @@
 
                             <div class="input-group col-md-6">
                                 <input type="hidden" name="license_id_{{ $i }}" value="{{ $license->id }}">
-                                <input id="license_year_{{ $i }}" type="license_year_{{ $i }}" class="form-control{{ $errors->has('license_year_{$i}') ? ' is-invalid' : '' }}" name="license_year_{{ $i }}" value="{{ old('license_year_{$i}', $year) }}" placeholder="西暦">
+                                <input id="license_year_{{ $i }}" type="license_year_{{ $i }}" class="form-control{{ $errors->has('license_year_{$i}') ? ' is-invalid' : '' }}" name="license_year_{{ $i }}" value="{{ old('license_year_{$i}', $year) }}">
                                 <input id="license_month_{{ $i }}" type="license_month_{{ $i }}" class="form-control{{ $errors->has('license_month_{$i}') ? ' is-invalid' : '' }}" name="license_month_{{ $i }}" value="{{ old('license_month_{$i}', $month) }}">
                                 <input id="license_detail_{{ $i }}" type="license_detail_{{ $i }}" class="form-control{{ $errors->has('license_detail_{$i}') ? ' is-invalid' : '' }}" name="license_detail_{{ $i }}" value="{{ old('license_detail_{$i}', $license->license_detail) }}">
                             </div>
@@ -260,9 +262,9 @@
                             <label for="license_{{ $n }}" class="col-md-4 col-form-label text-md-right">{{ __('license ').$n }}</label>
 
                             <div class="input-group col-md-6">
-                                <input id="license_year_{{ $n }}" type="license_year_{{ $n }}" class="form-control{{ $errors->has('license_year_{$n}') ? ' is-invalid' : '' }}" name="license_year_{{ $n }}" value="{{ old('license_year_{$n}') }}" placeholder="西暦">
-                                <input id="license_month_{{ $n }}" type="license_month_{{ $n }}" class="form-control{{ $errors->has('license_month_{$n}') ? ' is-invalid' : '' }}" name="license_month_{{ $n }}" value="{{ old('license_month_{$n}') }}">
-                                <input id="license_detail_{{ $n }}" type="license_detail_{{ $n }}" class="form-control{{ $errors->has('license_detail_{$n}') ? ' is-invalid' : '' }}" name="license_detail_{{ $n }}" value="{{ old('license_detail_{$n}') }}">
+                                <input id="license_year_{{ $n }}" type="license_year_{{ $n }}" class="form-control{{ $errors->has('license_year_{$n}') ? ' is-invalid' : '' }}" name="license_year_{{ $n }}" value="{{ old('license_year_{$n}') }}" placeholder="年(西暦)">
+                                <input id="license_month_{{ $n }}" type="license_month_{{ $n }}" class="form-control{{ $errors->has('license_month_{$n}') ? ' is-invalid' : '' }}" name="license_month_{{ $n }}" value="{{ old('license_month_{$n}') }}" placeholder="月">
+                                <input id="license_detail_{{ $n }}" type="license_detail_{{ $n }}" class="form-control{{ $errors->has('license_detail_{$n}') ? ' is-invalid' : '' }}" name="license_detail_{{ $n }}" value="{{ old('license_detail_{$n}') }}" placeholder="資格名">
                             </div>
                         </div>
                         @endfor
