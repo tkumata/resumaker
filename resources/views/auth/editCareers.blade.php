@@ -16,17 +16,36 @@
                         <div class="form-group row">
                             <label for="resumes_{{ $i }}" class="col-md-4 col-form-label text-md-right">{{ __('Career ').$i }}</label>
 
-                            <div class="input-group col-md-6">
+                            <div class="col-md-6">
                                 <?php
                                 $company_name = preg_replace("/入社/", '', $resume->resumes_organization_name);
                                 ?>
-                                {{ $company_name }}
-                                <textarea id="resumes_detail_{{ $resume->id }}" type="resumes_detail_{{ $resume->id }}" class="form-control" name="resumes_detail_{{ $resume->id }}" rows="20">{{ old('resumes_detail_{$resume->id}', $resume->resumes_detail) }}</textarea>
+                                <div>{{ $company_name }}</div>
+                                <textarea id="resumes_detail_{{ $resume->id }}" type="resumes_detail_{{ $resume->id }}" class="form-control" name="resumes_detail_{{ $resume->id }}" rows="12">{{ old('resumes_detail_{$resume->id}', $resume->resumes_detail) }}</textarea>
                             </div>
                         </div>
                         <?php $i++; ?>
                         @empty
                         <?php $i = 0; ?>
+                        @endforelse
+
+                        @forelse ($notes as $note)
+                        <div class="form-group row">
+                            <label for="careers_notes" class="col-md-4 col-form-label text-md-right">{{ __('Notes') }}</label>
+
+                            <div class="col-md-6">
+                                <input type="hidden" name="notes_id" value="{{ $note->id }}" />
+                                <textarea id="careers_notes" type="careers_notes" class="form-control" name="careers_notes" rows="10">{{ old('careers_notes', $note->careers_notes) }}</textarea>
+                            </div>
+                        </div>
+                        @empty
+                        <div class="form-group row">
+                            <label for="careers_notes" class="col-md-4 col-form-label text-md-right">{{ __('Notes') }}</label>
+
+                            <div class="col-md-6">
+                                <textarea id="careers_notes" type="careers_notes" class="form-control" name="careers_notes" rows="10">{{ old('careers_notes') }}</textarea>
+                            </div>
+                        </div>
                         @endforelse
 
                         {{-- submit button --}}

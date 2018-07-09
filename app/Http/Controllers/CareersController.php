@@ -8,6 +8,7 @@ use Intervention\Image\Facades\Image as Image;
 use File;
 use Users;
 use App\Resumes;
+use App\Careers;
 use Auth;
 
 class CareersController extends Controller
@@ -38,7 +39,9 @@ class CareersController extends Controller
                 ->orderby('resumes_date')
                 ->get();
 
-            return view('auth.editCareers', compact('user', 'resumes'));
+            $notes = Careers::where('careers_users_id', $user->id)->get();
+
+            return view('auth.editCareers', compact('user', 'resumes', 'notes'));
         }
     }
 
@@ -54,16 +57,30 @@ class CareersController extends Controller
         if ($user) {
             /**
              * Resumes
-             *
-             * @var $d->{'resumes_detail_'.$i}
              */
             foreach ($data->request as $k => $v) {
                 if (preg_match("/resumes_detail_/", $k)) {
                     $resumes_id = preg_replace("/resumes_detail_/", "", $k);
-                    // dd($resumes_id, $v);
+
                     // Update.
                     Resumes::where('id', $resumes_id)->update([
                         'resumes_detail' => $v
+                    ]);
+                }
+            }
+
+            /**
+             * Careers notes
+             */
+            if (empty($data->notes_id)) {
+                $careers = new Careers;
+                $careers->careers_users_id = $user->id;
+                $careers->careers_notes = $data->careers_notes;
+                $careers->save();
+            } else {
+                if ($data->careers_notes) {
+                    Careers::where('careers_users_id', $user->id)->update([
+                        'careers_notes' => $data->careers_notes
                     ]);
                 }
             }

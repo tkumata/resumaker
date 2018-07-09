@@ -59,17 +59,17 @@
                                     <a class="dropdown-item" href="{{ route('home') }}">
                                         {{ __('Dashboard') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('preview') }}">
-                                        {{ __('Preview resumes') }}
-                                    </a>
                                     <a class="dropdown-item" href="{{ route('editUser') }}">
                                         {{ __('Edit resumes') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('previewCareers') }}">
-                                        {{ __('Preview careers') }}
+                                    <a class="dropdown-item" href="{{ route('preview') }}">
+                                        {{ __('View resumes') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('editCareers') }}">
                                         {{ __('Edit careers') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('previewCareers') }}">
+                                        {{ __('View careers') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
