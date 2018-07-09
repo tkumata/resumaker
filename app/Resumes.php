@@ -9,4 +9,5 @@ class Resumes extends Model
     //
     protected $table = 'resumes';
     protected $guarded = ['id'];
+    protected $dates = ['resumes_date'];
 }

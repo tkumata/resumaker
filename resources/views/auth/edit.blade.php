@@ -97,20 +97,6 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="address_kana" class="col-md-4 col-form-label text-md-right">{{ __('Address Kana') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="address_kana" type="address_kana" class="form-control{{ $errors->has('address_kana') ? ' is-invalid' : '' }}" name="address_kana" value="{{ old('address_kana', $user->address_kana) }}" required>
-
-                                @if ($errors->has('address_kana'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('address_kana') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
 
                             <div class="col-md-6">
@@ -119,6 +105,20 @@
                                 @if ($errors->has('address'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('address') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="address_kana" class="col-md-4 col-form-label text-md-right">{{ __('Address Kana') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="address_kana" type="address_kana" class="form-control{{ $errors->has('address_kana') ? ' is-invalid' : '' }}" name="address_kana" value="{{ old('address_kana', $user->address_kana) }}" required>
+
+                                @if ($errors->has('address_kana'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('address_kana') }}</strong>
                                     </span>
                                 @endif
                             </div>

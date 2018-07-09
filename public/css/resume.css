@@ -57,6 +57,11 @@ h1 {
     top: -10mm;
 }
 
+.now {
+    position: absolute;
+    top: -5mm;
+    right: 55mm;
+}
 .photo {
     position: absolute;
     top: -8mm;

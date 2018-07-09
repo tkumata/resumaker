@@ -76,7 +76,7 @@
                 <path
                     stroke="black" stroke-width="0.5" fill="none"
                     d="m 0,56 h 148"/>
-                                <path
+                <path
                     stroke="black" stroke-width="0.5" fill="none"
                     d="m 0,66 h 148"/>
                 <path
@@ -105,6 +105,7 @@
     </svg>
     <div id="page-1">
         <h1>履 歴 書</h1>
+        <div class="now">{{ $user->updated_at == "" ? $user->created_at->format('Y/m/d'):$user->updated_at->format('Y/m/d') }} 現在</div>
         @if ($user->img_path)
         <img class="photo" src="{{ url('/') }}/profilepics/{{ $user->img_path }}" alt="写真" />
         @else

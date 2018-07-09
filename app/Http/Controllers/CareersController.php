@@ -88,4 +88,25 @@ class CareersController extends Controller
             return view('home');
         }
     }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function preview()
+    {
+        $user = Auth::user();
+
+        if ($user) {
+            $resumes = Resumes::where('resumes_users_id', $user->id)
+                ->where('resumes_organization_name', 'LIKE', '%入社%')
+                ->orderby('resumes_date')
+                ->get();
+
+            $notes = Careers::where('careers_users_id', $user->id)->get();
+
+            return view('career', compact('user', 'resumes', 'notes'));
+        }
+    }
 }
