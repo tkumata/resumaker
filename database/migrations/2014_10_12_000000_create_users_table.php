@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('tel1')->nullable();
             $table->string('tel2')->nullable();
             $table->string('fax')->nullable();
+            $table->string('public')->nullable()->unique();
             $table->rememberToken();
             $table->timestamps();
         });

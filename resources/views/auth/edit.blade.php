@@ -189,6 +189,18 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="public" class="col-md-4 col-form-label text-md-right">{{ __('Public') }}</label>
+
+                            <div class="col-md-6">
+                                @if ($user->public)
+                                <input id="public" type="checkbox" class="form-control" name="public" value="share" checked>
+                                @else
+                                <input id="public" type="checkbox" class="form-control" name="public" value="share">
+                                @endif
+                            </div>
+                        </div>
+
                         <hr />
 
                         {{-- 履歴部分 --}}

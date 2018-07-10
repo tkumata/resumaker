@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Intervention\Image\Facades\Image as Image;
+use Illuminate\Support\Facades\Hash;
 use File;
-use Users;
+use App\User;
 use App\Resumes;
 use App\License;
 use App\Others;
@@ -31,7 +32,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = Auth::user();
+        if ($user) {
+            $public = $user->public;
+        }
+        return view('home', compact('public'));
     }
 
     /**
@@ -81,6 +86,16 @@ class HomeController extends Controller
             $user->tel1 = $data->tel1;
             $user->tel2 = $data->tel2;
             $user->fax = $data->fax;
+            // Public
+            if ($data->public == "share") {
+                if (!$user->public) {
+                    $str = $token = bin2hex(random_bytes(64));
+                    $user->public = $str;
+                }
+            } else {
+                $user->public = null;
+            }
+            $public = $user->public;
             // Image
             if (Input::file('image')) {
                 // Delete old image at first.
@@ -208,7 +223,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('home');
+        return view('home', compact('public'));
     }
 
     /**

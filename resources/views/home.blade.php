@@ -15,6 +15,14 @@
                     @endif
 
                     You are logged in!
+
+                    <div>
+                        @if ($public)
+                        {{ url('/') }}/{{ $public }}
+                        @else
+                        unpublic your resume.
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
