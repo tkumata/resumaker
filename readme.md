@@ -1,7 +1,7 @@
 
 ## About Resumaker
 
-This is a Laravel app which makes a resume as Japanes style.
+This is a Laravel app which makes resume and career sheet as Japanes style. And this shares your resume and career sheet with someone which knows the URL.
 
 [![editor](./resumaker1.png)](resumaker1.png)
 [![resume](./resumaker2.png)](resumaker2.png)
@@ -14,11 +14,8 @@ composer require intervention/image
 
 ## Todo
 
-- Implementation career table.
-- Open resume to somebody whom knows the URL.
 - Convert AD to Japanese calendar automatically.
 - Improve UI.
-- Implementation a feature which removing personal image.
 
 ## License
 
