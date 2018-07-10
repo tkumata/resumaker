@@ -88,7 +88,7 @@ class CareersController extends Controller
                 }
             }
 
-            return view('home');
+            return redirect('home');
         }
     }
 

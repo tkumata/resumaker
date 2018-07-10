@@ -223,7 +223,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('home', compact('public'));
+        return redirect('home');
     }
 
     /**
