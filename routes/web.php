@@ -28,4 +28,5 @@ Route::post('/editcareers', 'CareersController@update')->name('updateCareers');
 Route::get('/preview', 'HomeController@previewResume')->name('preview');
 Route::get('/previewCareers', 'CareersController@preview')->name('previewCareers');
 //
-Route::get('/{code}', 'OpenResumesController@openResume');
+Route::get('/resume/{code}', 'OpenResumesController@openResume');
+Route::get('/career/{code}', 'OpenResumesController@openCareer');

@@ -10,6 +10,7 @@ use File;
 use App\User;
 use App\Resumes;
 use App\License;
+use App\Careers;
 use App\Others;
 
 class OpenResumesController extends Controller
@@ -51,6 +52,29 @@ class OpenResumesController extends Controller
                     'licenses',
                     'others'
                 ));
+            }
+        }
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function openCareer($code)
+    {
+        if ($code) {
+            $user = User::where('public', $code)->first();
+
+            if ($user) {
+                $resumes = Resumes::where('resumes_users_id', $user->id)
+                    ->where('resumes_organization_name', 'LIKE', '%入社%')
+                    ->orderby('resumes_date')
+                    ->get();
+
+                $notes = Careers::where('careers_users_id', $user->id)->get();
+
+                return view('career', compact('user', 'resumes', 'notes'));
             }
         }
     }

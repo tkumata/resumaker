@@ -18,7 +18,8 @@
 
                     <div>
                         @if ($public)
-                        {{ url('/') }}/{{ $public }}
+                        {{ url('/') }}/resume/{{ $public }}
+                        {{ url('/') }}/career/{{ $public }}
                         @else
                         unpublic your resume.
                         @endif

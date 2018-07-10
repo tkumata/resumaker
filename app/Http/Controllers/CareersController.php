@@ -1,12 +1,15 @@
 <?php
-
+/**
+ * ひらがな入れないと、VSCode が何が何でも Windows 1252 にするから何かひらがな入れとく。
+ * Fucki'n VSCode!!!!!
+ */
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Intervention\Image\Facades\Image as Image;
 use File;
-use Users;
+use User;
 use App\Resumes;
 use App\Careers;
 use Auth;
