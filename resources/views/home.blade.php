@@ -14,14 +14,21 @@
                         </div>
                     @endif
 
-                    You are logged in!
-
                     <div>
+                        <div>Resume</div>
                         @if ($public)
                         {{ url('/') }}/resume/{{ $public }}
+                        @else
+                        Not public your resume.
+                        @endif
+                    </div>
+
+                    <div>
+                        <div>Career</div>
+                        @if ($public)
                         {{ url('/') }}/career/{{ $public }}
                         @else
-                        unpublic your resume.
+                        Not public your carrer.
                         @endif
                     </div>
                 </div>

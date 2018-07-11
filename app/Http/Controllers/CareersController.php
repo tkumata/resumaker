@@ -13,6 +13,7 @@ use User;
 use App\Resumes;
 use App\Careers;
 use Auth;
+use App\Classes\MyClass;
 
 class CareersController extends Controller
 {
@@ -102,12 +103,8 @@ class CareersController extends Controller
         $user = Auth::user();
 
         if ($user) {
-            $resumes = Resumes::where('resumes_users_id', $user->id)
-                ->where('resumes_organization_name', 'LIKE', '%入社%')
-                ->orderby('resumes_date')
-                ->get();
-
-            $notes = Careers::where('careers_users_id', $user->id)->get();
+            $my = new MyClass;
+            list($resumes, $notes) = $my->previewCareer($user);
 
             return view('career', compact('user', 'resumes', 'notes'));
         }

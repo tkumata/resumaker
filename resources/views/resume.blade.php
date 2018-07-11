@@ -281,7 +281,7 @@
             <h2>趣味</h2>
             <div>
                 @if ($others)
-                <p>{{ $others->others_hobby }}</p>
+                <p>{!! nl2br($others->others_hobby) !!}</p>
                 @else
                 <p></p>
                 @endif
@@ -292,7 +292,7 @@
             <h2>特技</h2>
             <div>
                 @if ($others)
-                <p>{{ $others->others_special }}
+                <p>{!! nl2br($others->others_special) !!}
                 @else
                 <p></p>
                 @endif
@@ -303,7 +303,7 @@
             <h2>志望動機</h2>
             <div>
                 @if ($others)
-                <p>{{ $others->others_reason }}</p>
+                <p>{!! nl2br($others->others_reason) !!}</p>
                 @else
                 <p></p>
                 @endif
@@ -314,7 +314,7 @@
             <h2>自己アピール</h2>
             <div>
                 @if ($others)
-                <p>{{ $others->others_pr }}</p>
+                <p>{!! nl2br($others->others_pr) !!}</p>
                 @else
                 <p></p>
                 @endif
@@ -325,7 +325,7 @@
             <h2>希望</h2>
             <div>
                 @if ($others)
-                <p>{{ $others->others_expectation }}</p>
+                <p>{!! nl2br($others->others_expectation) !!}</p>
                 @else
                 <p></p>
                 @endif
