@@ -1,13 +1,16 @@
 <html>
 <head>
-<link rel="stylesheet" href="{{ url('/') }}/css/career.css">
+    <meta nmae="robots" content="none">
+    <link rel="stylesheet" href="{{ url('/') }}/css/career.css">
 </head>
 
 <body>
     <section class="page" style="z-index: 1;">
         <div id="page-1">
             <h1 class="title">職 務 経 歴 書</h1>
-            <div class="now">{{ $user->updated_at == "" ? $user->created_at->format('Y/m/d'):$user->updated_at->format('Y/m/d') }} 現在</div>
+            <div class="now">
+                {{ $user->updated_at == "" ? $user->created_at->format('Y/m/d') : $user->updated_at->format('Y/m/d') }} 現在
+            </div>
             <div class="user_name">{{ $user->name }}</div>
         </div>
 

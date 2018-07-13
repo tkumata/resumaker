@@ -1,5 +1,6 @@
 <html>
 <head>
+    <meta nmae="robots" content="none">
     <link rel="stylesheet" href="{{ url('/') }}/css/resume.css">
 </head>
 
