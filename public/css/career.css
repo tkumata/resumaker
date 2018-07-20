@@ -65,6 +65,8 @@ tr {
 .notes pre {
     font-family: monospace;
     line-height: 100%;
+    margin: 0;
+    padding: 0;
 }
 .end {
     margin-top: 30px;
