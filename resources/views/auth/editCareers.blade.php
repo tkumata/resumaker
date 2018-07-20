@@ -11,6 +11,7 @@
                     <form method="POST" action="{{ route('updateCareers') }}" enctype="multipart/form-data">
                         @csrf
 
+                        {{-- Careers --}}
                         <?php $i = 1; ?>
                         @forelse ($resumes as $resume)
                         <div class="form-group row">
@@ -29,9 +30,10 @@
                         <?php $i = 0; ?>
                         @endforelse
 
+                        {{-- Notes --}}
                         @forelse ($notes as $note)
                         <div class="form-group row">
-                            <label for="careers_notes" class="col-md-4 col-form-label text-md-right">{{ __('Notes') }}</label>
+                            <label for="careers_notes" class="col-md-4 col-form-label text-md-right">{{ __('Notes') }}<br>You can use pre tag.</label>
 
                             <div class="col-md-6">
                                 <input type="hidden" name="notes_id" value="{{ $note->id }}" />
@@ -40,7 +42,7 @@
                         </div>
                         @empty
                         <div class="form-group row">
-                            <label for="careers_notes" class="col-md-4 col-form-label text-md-right">{{ __('Notes') }}</label>
+                            <label for="careers_notes" class="col-md-4 col-form-label text-md-right">{{ __('Notes') }}<br>You can use pre tag.</label>
 
                             <div class="col-md-6">
                                 <textarea id="careers_notes" type="careers_notes" class="form-control" name="careers_notes" rows="20">{{ old('careers_notes') }}</textarea>
