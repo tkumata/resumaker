@@ -29,6 +29,5 @@ composer require intervention/image
 
 MIT
 
-## Reference
-
-https://qiita.com/liarnose/items/bfcc2c731665464acb2a
+## Reference and Special Thanks
+[css履歴書の逆襲](https://qiita.com/liarnose/items/bfcc2c731665464acb2a)
