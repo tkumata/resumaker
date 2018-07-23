@@ -25,8 +25,8 @@
             <tr>
                 <td class="date">
                     <div>
-                        {{ $resume->resumes_date->format('Y年 m月') }}
-                        〜
+                        {{ $resume->resumes_date->format('Y年 m月') }}<br />
+                        〜<br />
                         @if ($countResumes > $k + 1)
                         {{ $resumes[$k + 1]->resumes_date->format('Y年 m月') }}
                         @else
