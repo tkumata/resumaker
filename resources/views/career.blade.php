@@ -17,11 +17,21 @@
         <div class="head">職務経歴</div>
         <table>
             <tr><th>会社</th><th>日付</th><th>職務内容</th></tr>
-            @foreach ($resumes as $resume)
+            <?php $countResumes = count($resumes); ?>
+            @foreach ($resumes as $k => $resume)
+            @if (preg_match("/退社/", $resume->resumes_organization_name))
+                @continue
+            @endif
             <tr>
                 <td class="date">
                     <div>
                         {{ $resume->resumes_date->format('Y年 m月') }}
+                        〜
+                        @if ($countResumes > $k + 1)
+                        {{ $resumes[$k + 1]->resumes_date->format('Y年 m月') }}
+                        @else
+                        現在
+                        @endif
                     </div>
                 </td>
                 <td class="org_name">

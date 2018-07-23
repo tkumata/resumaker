@@ -1,7 +1,7 @@
 
 ## About Resumaker
 
-This is a Laravel app which makes resume and career sheet as Japanes style. And this shares your resume and career sheet with someone which knows the URL.
+This is a Laravel app which makes resume and career sheet as Japanes style. And this can share your resume and career sheet with someone which knows the URL.
 
 - Save your information.
 - Fit your face image automatically.
@@ -16,6 +16,7 @@ This is a Laravel app which makes resume and career sheet as Japanes style. And 
 ## Required
 
 ```
+Laravel 5.6.x
 composer require intervention/image
 ```
 

@@ -49,6 +49,7 @@ class MyClass
     {
         $resumes = Resumes::where('resumes_users_id', $user->id)
             ->where('resumes_organization_name', 'LIKE', '%入社%')
+            ->orwhere('resumes_organization_name', 'LIKE', '%退社%')
             ->orderby('resumes_date')
             ->get();
 
