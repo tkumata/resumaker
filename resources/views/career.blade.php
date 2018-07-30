@@ -16,7 +16,7 @@
 
         <div class="head">職務経歴</div>
         <table>
-            <tr><th>会社</th><th>日付</th><th>職務内容</th></tr>
+            <tr><th>日付</th><th>会社</th><th>職務内容</th></tr>
             <?php $countResumes = count($resumes); ?>
             @foreach ($resumes as $k => $resume)
             @if (preg_match("/退社/", $resume->resumes_organization_name))
