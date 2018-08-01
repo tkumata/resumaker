@@ -237,15 +237,15 @@
         <g transform="translate(0,122)">
             <path
                 stroke="black" stroke-width="0.8" fill="none"
-                d="m 0,0 h 148 v 28 h -148 v -28 z"/>
+                d="m 0,0 h 148 v 38 h -148 v -38 z"/>
             <path
                 stroke="black" stroke-width="0.5" fill="none"
                 d="m 0,6 h 148"/>
         </g>
-        <g transform="translate(0,154)">
+        <g transform="translate(0,164)">
             <path
                 stroke="black" stroke-width="0.8" fill="none"
-                d="m 0,0 h 148 v 44 h -148 v -44 z"/>
+                d="m 0,0 h 148 v 34 h -148 v -34 z"/>
             <path
                 stroke="black" stroke-width="0.5" fill="none"
                 d="m 0,6 h 148"/>

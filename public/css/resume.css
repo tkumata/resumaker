@@ -349,7 +349,7 @@ h1 {
 .reason div {
     top: 6mm;
     width: 148mm;
-    height: 28mm;
+    height: 38mm;
     padding: 0.5mm;
     text-align: justify;
 }
@@ -358,7 +358,7 @@ h1 {
 }
 
 .selling-point {
-    top: 154mm;
+    top: 164mm;
 }
 .selling-point h2 {
     width: 148mm;
@@ -368,7 +368,7 @@ h1 {
 .selling-point div {
     top: 6mm;
     width: 148mm;
-    height: 38mm;
+    height: 28mm;
     padding: 0.5mm;
     text-align: justify;
 }
