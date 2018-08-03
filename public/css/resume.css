@@ -89,12 +89,13 @@ h1 {
     width: 14mm;
     height: 6mm;
 }
-.name span {
+.name_span {
     font-size: 20pt;
     left: 14mm;
     width: 68mm;
     height: 14mm;
     line-height: 40pt;
+    display: inline-block;
 }
 
 .gender {

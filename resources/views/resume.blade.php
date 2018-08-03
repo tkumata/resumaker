@@ -114,7 +114,7 @@
         @endif
         <div class="name">
             <h2>氏名</h2>
-            <span>{{ $user->name }}</span>
+            <div class="name_span">{{ $user->name }}</div>
         </div>
         <div class="name-kana">
             <h2>フリガナ</h2>
