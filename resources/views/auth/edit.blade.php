@@ -167,9 +167,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}<br />
-                            <span>Max size: {{ (int)(ini_get('upload_max_filesize')) }} MB / Aspect: 3:4</span>
-</label>
+                            <label for="image" class="col-md-4 col-form-label text-md-right">
+                                {{ __('Image') }}<br />
+                                <span>Max size: {{ (int)(ini_get('upload_max_filesize')) }} MB / Aspect: 3:4</span>
+                            </label>
 
                             <div class="col-md-6">
                                 <div id="trim-border">
@@ -182,9 +183,9 @@
                                 <input id="image" class="form-control{{ $errors->has('image') ? ' is-invalid' : '' }}" name="image" type="file">
 
                                 @if ($errors->has('image'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('image') }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('image') }}</strong>
+                                </span>
                                 @endif
                             </div>
                         </div>
